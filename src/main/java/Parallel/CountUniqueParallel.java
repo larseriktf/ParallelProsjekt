@@ -12,6 +12,6 @@ public class CountUniqueParallel {
         ForkJoinPool pool = new ForkJoinPool(parallelism);
         pool.invoke(task);
 
-        return numbers.length;
+        return task.getSum();
     }
 }

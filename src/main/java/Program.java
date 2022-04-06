@@ -6,12 +6,12 @@ import java.util.Random;
 public class Program {
     // Count the number of unique values in an integer array A[N].
     // Values of the array A[N] are from an input file.
-    private static final int[] numbers = generateArray(500_000);
+    private static final int[] numbers = generateArray(1_000_000);
 
     public static void main(String[] args) {
         System.out.println("Testing");
         int processors = Runtime.getRuntime().availableProcessors();
-        //System.out.println(CountUniqueSerial.count(numbers));
+        System.out.println(CountUniqueSerial.count(numbers));
         System.out.println(CountUniqueParallel.count(numbers, processors));
 
         // System.out.println(Arrays.toString(numbers));

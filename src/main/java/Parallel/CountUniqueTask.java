@@ -4,8 +4,9 @@ import java.util.concurrent.RecursiveAction;
 
 public class CountUniqueTask extends RecursiveAction {
 
-    private int[] numbers;
-    private int start, end;
+    private final int[] numbers;
+    private final int start;
+    private final int end;
     private int sum = 0;
     private final int threshold = 100_000;
 
@@ -27,11 +28,12 @@ public class CountUniqueTask extends RecursiveAction {
                     sum++;
                 }
             }
+
+            // System.out.println(sum);
         } else {
             // Assume integer array is sorted
             // Split into left and right task on the closes number difference
-
-            int split = (end - start) / 2;
+            int split = (start + end) / 2;
 
             while (split == numbers[split + 1]) {
                 split++;
@@ -47,7 +49,7 @@ public class CountUniqueTask extends RecursiveAction {
         }
     }
 
-    private int getSum() {
+    public int getSum() {
         return sum;
     }
 }
