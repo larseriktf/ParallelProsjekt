@@ -1,5 +1,7 @@
 package Parallel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.RecursiveAction;
 
 public class CountUniqueTask extends RecursiveAction {
@@ -20,6 +22,8 @@ public class CountUniqueTask extends RecursiveAction {
     protected void compute() {
         if (end - start <= threshold) {
             // Compute directly when workload is less than threshold
+            // System.out.println(start + " " + end);
+
             int lastN = Integer.MAX_VALUE;
             for (int i = start; i < end; i++) {
                 int n = numbers[i];
@@ -28,16 +32,18 @@ public class CountUniqueTask extends RecursiveAction {
                     sum++;
                 }
             }
-
-            // System.out.println(sum);
         } else {
             // Assume integer array is sorted
-            // Split into left and right task on the closes number difference
+            // Split into left and right task on the closest number difference
             int split = (start + end) / 2;
 
-            while (split == numbers[split + 1]) {
+
+            // [ 0 1 1 4 4 4 4 5 8 9 ]
+            while (numbers[split] == numbers[split + 1]) {
                 split++;
             }
+
+            //System.out.println(numbers[split - 1] + "///" + numbers[split] + "///" + numbers[split+1]);
 
             CountUniqueTask left = new CountUniqueTask(numbers, start, split);
             CountUniqueTask right = new CountUniqueTask(numbers, split, end);
