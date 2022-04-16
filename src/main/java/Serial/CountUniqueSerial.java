@@ -1,19 +1,16 @@
 package Serial;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import helper.QuickSort;
 
 public class CountUniqueSerial {
 
     public static int count(int[] numbers) {
-        //Arrays.sort(numbers);
+        QuickSort.quickSort(numbers, 0, numbers.length);
 
-        ArrayList<Integer> unique = new ArrayList<>();
         int sum = 0;
 
         int lastN = Integer.MAX_VALUE;
-        for (int i = 0; i < numbers.length; i++) {
-            int n = numbers[i];
+        for (int n : numbers) {
             if (n != lastN) {
                 lastN = n;
                 sum++;
@@ -21,9 +18,5 @@ public class CountUniqueSerial {
         }
 
         return sum;
-    }
-
-    private void quickSort() {
-
     }
 }

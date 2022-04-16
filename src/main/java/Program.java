@@ -13,9 +13,8 @@ public class Program {
     // private static final int[] numbers = new int[]{-1,0,0,0,0,0,0,0,1,1,2,2,3,3,4,4,5};
 
     public static void main(String[] args) {
-        int[] numbers = generateArrayFromFile("testcases/testcase1.txt");
-
-        Arrays.sort(numbers);
+        int[] numbers = generateArrayFromFile("testcases/input/testcase2.txt");
+        int[] numbers2 = generateArrayFromFile("testcases/input/testcase2.txt");
 
         //Print array
         //System.out.println(Arrays.toString(numbers));
@@ -32,7 +31,7 @@ public class Program {
 
         // Parallell
         startTime = System.currentTimeMillis();
-        parUniqueCount = CountUniqueParallel.count(numbers, processors);
+        parUniqueCount = CountUniqueParallel.count(numbers2, processors);
         endTime = System.currentTimeMillis();
         parTime = endTime - startTime;
 
