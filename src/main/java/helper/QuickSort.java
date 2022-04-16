@@ -4,7 +4,6 @@ public class QuickSort {
     public static void quickSort(int[] data, int start, int end) {
         if(start < end) {
             int split =  partition(data, start, end);
-
             quickSort(data, start, split);
             quickSort(data, split + 1, end);
         }
@@ -21,7 +20,6 @@ public class QuickSort {
             }
         }
         swap(data, start, split);
-
         return split;
     }
 

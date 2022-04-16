@@ -2,7 +2,6 @@ package Parallel;
 
 import helper.QuickSort;
 
-import java.util.Arrays;
 import java.util.concurrent.RecursiveAction;
 
 public class CountUniqueTask extends RecursiveAction {
@@ -21,33 +20,12 @@ public class CountUniqueTask extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if ((end - start <= threshold) || (numbers[start] == numbers[end])) { //
-            // Compute directly when workload is less than threshold
+        // lower than threshold or array with all duplicates
+        // to prevent infinite sorting
+        if ((end - start <= threshold) || (numbers[start] == numbers[end])) {
             QuickSort.quickSort(numbers, start, end + 1);
-
-            // testing
-            /*
-            for (int i = start; i <= end; i++)
-                System.out.print(numbers[i] + ", ");
-            System.out.print("    |     ");
-            */
-
             countUnique();
         } else {
-            // Assume integer array is sorted
-            // Split into left and right task on the closest number difference
-
-            /*
-            int split = (start + end) / 2;
-            while (numbers[split] == numbers[split + 1]) {
-                split++;
-
-                // If split reaches end, wrap around
-                if (split == end) split = start;
-            }
-            */
-
-            // New Quicksort way
             int split = QuickSort.partition(numbers, start, end + 1);
 
             CountUniqueTask left = new CountUniqueTask(numbers, start, split);
