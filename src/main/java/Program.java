@@ -9,16 +9,16 @@ import java.util.Scanner;
 public class Program {
     // Count the number of unique values in an integer array A[N].
     // Values of the array A[N] are from an input file.
-     private static final int[] numbers = generateArray(10);
+    //private static final int[] numbers = generateArray(1_000_000);
     //private static final int[] numbers = new int[]{0,0,1,1,2,2,3,3,4,4,5};
 
     public static void main(String[] args) {
-        //int[] numbers = generateArrayFromFile("testcases/testcase1.txt");
+        int[] numbers = generateArrayFromFile("testcases/testcase1.txt");
 
         Arrays.sort(numbers);
 
         //Print array
-        System.out.println(Arrays.toString(numbers));
+        //System.out.println(Arrays.toString(numbers));
 
         System.out.println("Testing");
         int processors = Runtime.getRuntime().availableProcessors();
