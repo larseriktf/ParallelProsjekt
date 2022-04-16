@@ -10,7 +10,7 @@ public class Program {
     // Count the number of unique values in an integer array A[N].
     // Values of the array A[N] are from an input file.
     //private static final int[] numbers = generateArray(1_000_000);
-    //private static final int[] numbers = new int[]{0,0,1,1,2,2,3,3,4,4,5};
+    // private static final int[] numbers = new int[]{-1,0,0,0,0,0,0,0,1,1,2,2,3,3,4,4,5};
 
     public static void main(String[] args) {
         int[] numbers = generateArrayFromFile("testcases/testcase1.txt");
@@ -20,9 +20,8 @@ public class Program {
         //Print array
         //System.out.println(Arrays.toString(numbers));
 
-        System.out.println("Testing");
         int processors = Runtime.getRuntime().availableProcessors();
-        long startTime = 0, endTime = 0, serTime = 0, parTime = 0;
+        long startTime, endTime, serTime, parTime;
         int serUniqueCount, parUniqueCount;
 
         // Serial
@@ -42,8 +41,8 @@ public class Program {
         System.out.println("Unique numbers (Parallell) : " + parUniqueCount);
 
         // Print Running Time
-        System.out.println("Running Time (Serial)    : " + serTime);
-        System.out.println("Running Time (Parallell) : " + parTime);
+        System.out.println("Running Time (Serial)      : " + serTime);
+        System.out.println("Running Time (Parallell)   : " + parTime);
 
         // Print Speedup
         double speedup = (double) serTime / (double) parTime;
