@@ -20,16 +20,10 @@ public class CountUniqueSerial {
             }
         }
 
-        /*
-        for (int currentN : numbers) {
-            if (currentN != lastN) {
-                lastN = currentN;
-                unique.add(currentN);
-            }
-        }
-         */
-
         return sum;
-        //return unique.size();
+    }
+
+    private void quickSort() {
+
     }
 }

@@ -2,5 +2,7 @@
 /shelf/
 /workspace.xml
 testcases/*.txt
+testcases/input
+testcases/testing
 
 target/*
