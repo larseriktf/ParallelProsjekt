@@ -7,31 +7,30 @@ public class Program {
 
     public static void main(String[] args) {
         System.out.println("Reading array from file...");
-        int[] data = FileHandler.generateArrayFromFile("testcases/input/testcase5.txt");
+        int[] data = FileHandler.generateArrayFromFile("testcases/input/testcase4.txt");
 
-        int iterations = 10;
+        int iterations = 1;
         int processors = Runtime.getRuntime().availableProcessors();
         long startTime, endTime, serTime = 0, parTime = 0;
         int serUniqueCount = 0, parUniqueCount = 0;
 
         System.out.println("Counting unique values...");
 
-        for (int i = 0; i < iterations; i++) {
-            // Serial
-            startTime = System.currentTimeMillis();
+        // Serial
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < iterations; i++)
             serUniqueCount = CountUniqueSerial.count(Arrays.copyOf(data, data.length));
-            endTime = System.currentTimeMillis();
-            serTime += endTime - startTime;
 
-            // Parallel
-            startTime = System.currentTimeMillis();
+        endTime = System.currentTimeMillis();
+        serTime = (endTime - startTime) / iterations;
+
+        // Parallel
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < iterations; i++)
             parUniqueCount = CountUniqueParallel.count(Arrays.copyOf(data, data.length), processors);
-            endTime = System.currentTimeMillis();
-            parTime += endTime - startTime;
-        }
 
-        serTime /= iterations;
-        parTime /= iterations;
+        endTime = System.currentTimeMillis();
+        parTime = (endTime - startTime) / iterations;
 
         // Print Unique Count
         System.out.print("\n");

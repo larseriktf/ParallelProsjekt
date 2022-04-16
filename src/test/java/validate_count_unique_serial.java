@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import Parallel.CountUniqueParallel;
 import Serial.CountUniqueSerial;
 import helper.FileHandler;
 import org.junit.Test;

@@ -7,10 +7,9 @@ import java.util.concurrent.RecursiveAction;
 public class CountUniqueTask extends RecursiveAction {
 
     private final int[] numbers;
-    private final int start;
-    private final int end;
+    private final int start, end;
+    private final int threshold = 10;
     private int sum = 0;
-    private final int threshold = 100;
 
     public CountUniqueTask(int[] numbers, int start, int end) {
         this.numbers = numbers;
