@@ -10,7 +10,7 @@ public class CountUniqueTask extends RecursiveAction {
     private final int start;
     private final int end;
     private int sum = 0;
-    private final int threshold = 100_000;
+    private final int threshold = 2;
 
     public CountUniqueTask(int[] numbers, int start, int end) {
         this.numbers = numbers;
@@ -22,7 +22,7 @@ public class CountUniqueTask extends RecursiveAction {
     protected void compute() {
         if (end - start <= threshold) {
             // Compute directly when workload is less than threshold
-            // System.out.println(start + " " + end);
+            System.out.println(start + " " + end);
 
             int lastN = Integer.MAX_VALUE;
             for (int i = start; i < end; i++) {
@@ -43,10 +43,10 @@ public class CountUniqueTask extends RecursiveAction {
                 split++;
             }
 
-            //System.out.println(numbers[split - 1] + "///" + numbers[split] + "///" + numbers[split+1]);
+            //System.out.println("Splitting between: " + numbers[split] + " and " + numbers[split+1]);
 
             CountUniqueTask left = new CountUniqueTask(numbers, start, split);
-            CountUniqueTask right = new CountUniqueTask(numbers, split, end);
+            CountUniqueTask right = new CountUniqueTask(numbers, split + 1, end);
 
             invokeAll(left, right);
 
