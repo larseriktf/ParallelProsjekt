@@ -10,7 +10,7 @@ public class CountUniqueTask extends RecursiveAction {
     private final int start;
     private final int end;
     private int sum = 0;
-    private final int threshold = 1000;
+    private final int threshold = 100;
 
     public CountUniqueTask(int[] numbers, int start, int end) {
         this.numbers = numbers;

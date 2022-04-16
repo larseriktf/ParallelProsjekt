@@ -6,32 +6,42 @@ import java.util.Arrays;
 public class Program {
 
     public static void main(String[] args) {
-        int[] data = FileHandler.generateArrayFromFile("testcases/testing/testcase10.txt");
+        System.out.println("Reading array from file...");
+        int[] data = FileHandler.generateArrayFromFile("testcases/input/testcase5.txt");
 
+        int iterations = 10;
         int processors = Runtime.getRuntime().availableProcessors();
-        long startTime, endTime, serTime, parTime;
-        int serUniqueCount, parUniqueCount;
+        long startTime, endTime, serTime = 0, parTime = 0;
+        int serUniqueCount = 0, parUniqueCount = 0;
 
-        // Serial
-        startTime = System.currentTimeMillis();
-        serUniqueCount = CountUniqueSerial.count(Arrays.copyOf(data, data.length));
-        endTime = System.currentTimeMillis();
-        serTime = endTime - startTime;
+        System.out.println("Counting unique values...");
 
-        // Parallel
-        startTime = System.currentTimeMillis();
-        parUniqueCount = CountUniqueParallel.count(Arrays.copyOf(data, data.length), processors);
-        endTime = System.currentTimeMillis();
-        parTime = endTime - startTime;
+        for (int i = 0; i < iterations; i++) {
+            // Serial
+            startTime = System.currentTimeMillis();
+            serUniqueCount = CountUniqueSerial.count(Arrays.copyOf(data, data.length));
+            endTime = System.currentTimeMillis();
+            serTime += endTime - startTime;
+
+            // Parallel
+            startTime = System.currentTimeMillis();
+            parUniqueCount = CountUniqueParallel.count(Arrays.copyOf(data, data.length), processors);
+            endTime = System.currentTimeMillis();
+            parTime += endTime - startTime;
+        }
+
+        serTime /= iterations;
+        parTime /= iterations;
 
         // Print Unique Count
         System.out.print("\n");
+        System.out.println("Iterations: " + iterations);
         System.out.println("Unique numbers (Serial)    : " + serUniqueCount);
         System.out.println("Unique numbers (Parallel)  : " + parUniqueCount);
 
         // Print Running Time
-        System.out.println("Running Time (Serial)      : " + serTime);
-        System.out.println("Running Time (Parallel)    : " + parTime);
+        System.out.println("Average running Time (Serial)      : " + serTime + " ms");
+        System.out.println("Average running Time (Parallel)    : " + parTime + " ms");
 
         // Print Speedup
         double speedup = (double) serTime / (double) parTime;
