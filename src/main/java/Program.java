@@ -7,10 +7,10 @@ public class Program {
 
     public static void main(String[] args) {
         System.out.println("Reading array from file...");
-        int[] data = FileHandler.generateArrayFromFile("testcases/input/testcase4.txt");
+        int[] data = FileHandler.generateArrayFromFile("testcases/input/testcase6.txt");
 
-        int iterations = 100;
-        int processors = 8; // Runtime.getRuntime().availableProcessors()
+        int iterations = 10;
+        int processors = 4; // Runtime.getRuntime().availableProcessors()
         long startTime, endTime, serTime = 0, parTime = 0;
         int serUniqueCount = 0, parUniqueCount = 0;
 

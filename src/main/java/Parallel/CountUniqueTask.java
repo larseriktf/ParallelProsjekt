@@ -8,7 +8,7 @@ public class CountUniqueTask extends RecursiveAction {
 
     private final int[] numbers;
     private final int start, end;
-    private final int threshold = 500_000;
+    private final int threshold = 10_000;
     private int sum = 0;
 
     public CountUniqueTask(int[] numbers, int start, int end) {
