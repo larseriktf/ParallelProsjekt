@@ -9,8 +9,8 @@ public class Program {
         System.out.println("Reading array from file...");
         int[] data = FileHandler.generateArrayFromFile("testcases/input/testcase4.txt");
 
-        int iterations = 1;
-        int processors = Runtime.getRuntime().availableProcessors();
+        int iterations = 100;
+        int processors = 8; // Runtime.getRuntime().availableProcessors()
         long startTime, endTime, serTime = 0, parTime = 0;
         int serUniqueCount = 0, parUniqueCount = 0;
 
