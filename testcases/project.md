@@ -1,42 +1,18 @@
-# Group:
-
----
-
+# Problem 8 - Parallel and Distributed Programming
+## Group:
 Jonas (GitHub: Jonaseli), Lars Erik (GitHub: larseriktf)
-
-
-# a)
-
----
-
-Done!
-
-# b)
-
----
-
-Done!
-
-# c)
-
----
-
-Done!
 
 # d)
 
----
+## The results
 
-Finding:
-Running with 1 iteration resulted with longer parallel time than serial time. Running with 2 or more iterations, resulted in faster parallel time than serial time.
-Our theory, is that the program re-uses the threads the second time around, which spares time. This might affect the final results.
+### Settings
+We ran the algorithms with 100 iterations using `input/testcase4.txt` with the following thresholds and levels of parallelism:
 
-Settings:
-Iterations: 100
-Using: input/testcase4.txt
-
-Testing thresholds: 10, 1_000, 10_000, 100_000, 500_000
+Testing thresholds: 10, 1_000, 10_000, 100_000, 500_000 <br>
 Testing parallelism: 1, 2, 4, 8
+
+Note, that we used ForkJoin framework in this project.
 
 <table style="text-align: center;">
     <tbody>
@@ -143,6 +119,21 @@ Testing parallelism: 1, 2, 4, 8
         </tr>
     </tbody>
 </table>
+
+## Explanation
+Looking at the results, the best performance with a speedup of 3.1 used parallelism level 8 with 10000 as threshold. Given that the system we tested on has 4 available processors, it seemed strange that a parallelism level of 8 would provide the best results. We think it might be a case of randomness in execution. Besides from that, the best overall performing level of parallelism was 4. This is more expected, as it reflects the number of available processors, which would give the most amount of resources for the program. In terms of threshold, level 1000 and 100000 performed rather well compared to the other levels. 500000 on the other hand, did not perform well. Our theory is that with level 500000, the program could not split the problem into enough tasks to make the parallel version much faster than the serial one. Level 1000 and 100000 seemed to be just right.  
+
+Interestingly enough, the efficiency number was not on par with the speedup. The best performing level of parallelism in terms of efficiency was level 1, having multiple instances of efficiency above 1. The least performing column of efficiency was 8 as parallelism, averaging an efficiency number of about ~0.33. Contrary to the speedup table, the threshold did not have much to say in terms of efficiency. The only outlier, might be level 500000, which again made poor results.
+
+Below is printed all the output from the console after running the program with different settings. It is revealed that running time of the serial version was stable around 90 ms. Interestingly, with parallelism level 1, both versions of countUnique seemed to have more or less equal running time. Other than that, running time was not hugely affected overall.
+
+## Findings
+Beginning with thresholds, the lowest and highest values were 10 and 500000. For these values, there were no substantial changes in the result data. 10 as threshold makes it so each task is unreasonably small. On the other hand, 500000 is about half of the workload in each testcase, thus the program barely distributes the problem. With level of parallelism, we found that 1 makes the parallel version almost identical to the serial one, in terms of overall performance. With parallelism level 8, we believe it to be unecessary as it exceeds the total amount of available processors.   
+
+Running with 1 iteration resulted with longer parallel time than serial time. Running with 2 or more iterations, resulted in faster parallel time than serial time.
+Our theory, is that the program re-uses the threads the second time around, which spares time. This might affect the final results.
+
+## Outputs
 
 Threshold: 10, Parallelism: 1
 ```
@@ -306,8 +297,6 @@ Efficiency: 0.24202127659574468
 
 # e)
 
----
-
 Threshold: 10 000
 Parallelism: 4
 Iterations: 10
@@ -352,6 +341,10 @@ Iterations: 10
     </tbody>
 </table>
 
+## Short explanation
+An interesting finding, while running the program with different inputs is relating to the file size. It seems that both versions of countUnique multiplies its running time with roughly ~10 for each subsequent testcase. Looking at the file sizes, it reveals that every testcase is also about ~10 times larger in file size than the previous. Both speedup and efficiency were relatively unchanged. 
+
+## Outputs
 
 Threshold: 10 000, Parallelism: 4, Iterations: 10, Input: testcase3.txt
 ```
